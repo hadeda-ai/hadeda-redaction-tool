@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import NavTabs from './NavTabs';
 import Home from './pages/Home';
-import About from './pages/About';
-import Blog from './pages/Blog';
-import Contact from './pages/Contact';
+import Submit from './pages/Submit';
+import Select from './pages/Select';
+import Output from './pages/Output';
 
 function Portfolio() {
   // Using useState, set the default value for currentPage to 'Home'
@@ -12,12 +12,12 @@ function Portfolio() {
   // The renderPage method uses a switch statement to render the appropriate current page
   const renderPage = () => {
     switch (currentPage) {
-      case 'About':
-        return <About />;
-      case 'Blog':
-        return <Blog />;
-      case 'Contact':
-        return <Contact />;
+      case 'Submit':
+        return <Submit />;
+      case 'Select':
+        return <Select />;
+      case 'Output':
+        return <Output />;
       default:
         return <Home />;
     }
