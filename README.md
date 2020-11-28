@@ -43,7 +43,7 @@ Additional potential features we considered
 ….Feature 4: Not all users are friends, and users profile favorite content will be compared to their pre-approved friends only
 
 ## App Screenshot
-![](images/FANTINDER.png)
+![](images/HADEDA.png)
 
 
 ## User Story
@@ -162,7 +162,6 @@ View the authors' portfolio at:
 
 [Table of Contents](#Contents)
 [Back to Top](#HADEDA)
-
 
 
 
