@@ -1,29 +1,27 @@
-# FANTINDER 
+# The HADEDA WEB APP - Team Chakra
 ## Developed with the MERN stack
 ### Introduction
 Github Repository
 ``` text 
-anitapeppercorn/FANTINDER
+anitapeppercorn/team-chakra
 ```
 
 ``` text
 App is Deployed at:
-https://fantinder.herokuapp.com/
+https://HADEDA-APP.herokuapp.com/
 
 ```
 
-We built a full stack - MERN Stack media streaming site and deployed it to Heroku at https://fantinder.herokuapp.com/ This project has played a key role in our journey to becoming a full-stack web developers. It showcases collaborative skills and coding abilities, especially in the context of a scalable, user-focused MERN app.
+We built a full stack - MERN Stack media streaming site and deployed it to Heroku at https://HADEDA-APP.herokuapp.com/ It showcases collaborative skills and coding abilities, especially in the context of a scalable, user-focused MERN app.
 Project Requirements were to to create a MERN stack single-page application that works with real-world data to solve a real-world challenge, with a focus on user demand:
 - Using React for the front end.
-- Using GraphQL with a Node.js and Express.js server.
-- Using MongoDB and the Mongoose ODM for the database.
-- Using queries and mutations for retrieving, adding, updating, and deleting data.
+- Using REST-API with a Node.js and Express.js server.
+- Using SQL and the Sequelize ORM for the database.
+- Using FETCH, POST, PUT etc. for retrieving, adding, updating, and deleting data.
 - Deployed using Heroku (with data).
 - Meets the minimum requirements of a PWA: Uses a web manifest, Uses a service worker for offline functionality, Is installable
 - Offering a polished UI, is responsive and is interactive 
-- Including authentication (JWT) and protects sensitive API key information on the server.
 - The project has a clean repository that meets quality coding standards (file structure, naming conventions, best practices for class and id naming conventions, indentation, quality comments, etc.) and a high-quality README (with unique name, description, technologies used, screenshot, and link to deployed application).
-- This project is part of our REACT portfolio 
 
 
 ## Contents
@@ -153,17 +151,17 @@ View the authors' portfolio at:
 ![Profile Image](https://github.com/anitapeppercorn.png?size=50)
 
 
-- https://priyaravi23.github.io/react-portfolio/
-![Badge](https://img.shields.io/badge/Github-priyaravi23-4cbbb9) 
-![Profile Image](https://github.com/priyaravi23.png?size=50)
+- https://withchristopher.github.io/react-portfolio/
+![Badge](https://img.shields.io/badge/Github-withchristopher-4cbbb9) 
+![Profile Image](https://github.com/withchristoper.png?size=50)
 
 
-- http://www.vlane.net
-![Badge](https://img.shields.io/badge/Github-vanessalane-4cbbb9) 
+- - https://iofall.github.io/react-portfolio/
+![Badge](https://img.shields.io/badge/Github-iofall-4cbbb9) 
 
 
 [Table of Contents](#Contents)
-[Back to Top](#FANTINDER)
+[Back to Top](#HADEDA)
 
 
 
