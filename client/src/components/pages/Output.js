@@ -1,7 +1,7 @@
 import React from "react";
-import { Media } from 'react-bootstrap';
+import { Container, Media } from 'react-bootstrap';
 const Output = () => (
-  <div>
+  <Container>
     <h1>Output Page</h1>
     <Media>
 
@@ -39,7 +39,7 @@ const Output = () => (
       </p>
     </Media.Body>
   </Media>
-  </div>
+  </Container>
 );
 
 export default Output;

@@ -1,9 +1,10 @@
 import React from "react";
+import { Container } from "react-bootstrap";
 import SelectInput from './SelectInput';
 
 const Select = () => (
 
-  <div>
+  <Container>
   <h1>Select Page</h1>
   <p>
     Donec a volutpat quam. Curabitur nec varius justo, sed rutrum ligula. Curabitur pellentesque
@@ -18,7 +19,7 @@ const Select = () => (
     iaculis, est ligula suscipit velit, sed bibendum turpis dui in sapien.
   </p>
   <SelectInput/>
-  </div>
+  </Container>
 );
 
 export default Select;

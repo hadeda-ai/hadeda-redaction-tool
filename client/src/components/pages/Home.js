@@ -1,8 +1,15 @@
 import React from "react";
+import { Container, Jumbotron } from 'react-bootstrap';
 
 const Home = () => (
-  <div>
-    <h1>Home Page</h1>
+<>
+<Jumbotron fluid className="text-light bg-dark">
+  <Container>
+      <h1>Welcome to HADEDA!</h1>
+  </Container>
+</Jumbotron>
+
+<Container>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna
       varius, blandit rhoncus sem. Morbi lacinia nisi ac dui fermentum, sed luctus urna tincidunt.
@@ -13,7 +20,8 @@ const Home = () => (
       consequat. Vestibulum vitae lorem tortor. In elementum ultricies tempus. Interdum et malesuada
       fames ac ante ipsum primis in faucibus.
     </p>
-  </div>
+</Container>
+</>
 );
 
 export default Home;

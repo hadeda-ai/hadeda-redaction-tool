@@ -1,10 +1,22 @@
 import React from 'react';
-
+import { Navbar } from 'react-bootstrap';
 // Props are passed through our functional component.
 function NavTabs(props) {
   const tabs = ['Home', 'Submit', 'Select', 'Output'];
   return (
-    <ul className="nav nav-tabs">
+    <Navbar collapseOnSelect expand="lg" bg="black" variant="dark">
+    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+    <Navbar.Collapse id="responsive-navbar-nav">
+      <Navbar.Brand>
+          HADEDA
+          <img
+        src= './logo192.png'
+        width="30"
+        height="30"
+        className="d-inline-block align-top"
+        alt="React Bootstrap logo"
+          />
+      </Navbar.Brand>
       {tabs.map(tab => (
         <li className="nav-item" key={tab}>
           <a
@@ -20,7 +32,8 @@ function NavTabs(props) {
           </a>
         </li>
       ))}
-    </ul>
+    </Navbar.Collapse>
+    </Navbar>
   );
 }
 

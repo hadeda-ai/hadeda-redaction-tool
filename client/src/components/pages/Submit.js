@@ -1,8 +1,9 @@
 import React from "react";
 import SubmitInput from './SubmitInput';
+import { Container } from 'react-bootstrap';
 
 const Submit = () => (
-  <div>
+  <Container>
     <h1>Submit Page</h1>
     <p>
       Nunc pharetra finibus est at efficitur. Praesent sed congue diam. Integer gravida dui mauris,
@@ -12,7 +13,7 @@ const Submit = () => (
       diam, sit amet facilisis lectus blandit at.
     </p>
     <SubmitInput/>
-  </div>
+  </Container>
 );
 
 export default Submit;
