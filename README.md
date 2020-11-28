@@ -143,7 +143,7 @@ In this project we used the following packages:
 ![license](https://img.shields.io/badge/License-MIT-blue)
 
 ## Author
-### Vanessa Lane, Anita Ganti, Priya Ravi
+### Chiristopher Maxwell, Anita Ganti, Yogendra Pawar
 
 View the authors' portfolio at:  
 - https://anitapeppercorn.github.io/react-portfolio/
@@ -156,7 +156,7 @@ View the authors' portfolio at:
 ![Profile Image](https://github.com/withchristoper.png?size=50)
 
 
-- - https://iofall.github.io/react-portfolio/
+- https://iofall.github.io/react-portfolio/
 ![Badge](https://img.shields.io/badge/Github-iofall-4cbbb9) 
 
 
