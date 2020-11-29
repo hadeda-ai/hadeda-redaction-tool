@@ -23,7 +23,7 @@ function App() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to={"/review:id"} className="nav-link">
+            <Link to={"/review/:id"} className="nav-link">
               Review
             </Link>
           </li>
@@ -39,8 +39,8 @@ function App() {
         <Switch>
           <Route exact path="/home" component={Home} />
           <Route exact path="/submit" component={Submit} />
-          <Route exact path="/review/:id" component={Review} />
-          <Route exact path="/output" component={Output} />
+          <Route path="/review/:id" component={Review} />
+          <Route path="/output/:id" component={Output} />
         </Switch>
       </div>
     </div>

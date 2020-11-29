@@ -155,7 +155,7 @@ const ToothlessList = (props) => {
           <div>
             <br />
             <p>Please select your redacted words.</p>
-            <Link to={"/output"} className="nav-link">
+            <Link to={`/output/${props.match.params.id}`} className="nav-link">
            <Button className="my-2 float-lg-right float-md-right float-sm-right btn-success">
                To Output Page
                  </Button>
