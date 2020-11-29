@@ -6,8 +6,7 @@ import { Button } from 'react-bootstrap';
 const Submit = () => {
   const initialToothlessState = {
     id: null,
-    text: "",
-    complete: true
+    text: ""
   };
   const [toothless, setToothless] = useState(initialToothlessState);
   const [submitted, setSubmitted] = useState(false);
@@ -20,14 +19,14 @@ const Submit = () => {
   const saveToothless = () => {
     var data = {
       text: toothless.text,
-      complete: toothless.complete
+      id: toothless.id
     };
 
     ToothlessDataService.create(data)
       .then(response => {
         setToothless({
           text: response.data.text,
-          complete: response.data.complete
+          id: response.data.id
         });
         setSubmitted(true);
         console.log(response.data);
@@ -48,7 +47,7 @@ const Submit = () => {
         <div>
           <h4>You submitted successfully!</h4>
           
-          <Link to={"/review"} className="nav-link">
+          <Link to={`/review/${toothless.id}`} className="nav-link">
       <Button className="my-2 float-lg-right float-md-right float-sm-right btn-success">
           To Review Page
             </Button>
