@@ -116,7 +116,7 @@ const ToothlessList = (props) => {
       <h4 className="text-center py-2" >Redacted Terms</h4>
     {keywords &&
         keywords.map((keyword, index) => (
-            <Form.Check className="my-2 ml-3" custom key={index} label={keyword.word} />
+            <Form.Check className="my-2 ml-3" type="checkbox" key={index} label={keyword.word} />
         ))}
 
     </Form>   

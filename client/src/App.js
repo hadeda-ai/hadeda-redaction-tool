@@ -14,7 +14,7 @@ function App() {
     <div>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <a href="/home" className="navbar-brand">
-         TEAM CHAKRA
+         HADEDA
         </a>
         <div className="navbar-nav mr-auto">
           <li className="nav-item">

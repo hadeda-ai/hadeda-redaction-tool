@@ -81,25 +81,12 @@ const keywordValues = Object.values(keywords)
 let keys =[ ...keywordValues.keys() ];
 console.log([keywords[1]]);
 
-function obsKeysToString(o, k, sep) {
-  // iterate over key array
-  return k.map(function(key) {
-     // get object property value 
-     return o[key];
-     // filter out non-empty and defined property
-   }).filter(function(v) {
-     return v;
-     // join the property value array with the separator
-   }).join(sep);
- }
-
- let word='';
 
 var myNewStr;
 const keywordReplace = () => {
-  var keyword1 = obsKeysToString(word, keywords, ',');
+ // var keyword1 = obsKeysToString(word, keywords, ',');
   var myStr = toothless.toString(); 
-// var keyword1 = [ 'Barclays', 'BBC Panorama', 'Manchester', 'Sheikh Mansour', 'Abu Dhabi', 'RBS', 'Lloyds TSB', 'Qatar'];
+  var keyword1 = [ 'Georgina Spooren', 'Eylem Middelkamp', 'J.A.W. Scholten-Hinloopen', 'D.A. Verburg', 'C.C.W. Lange'];
   // var myStr = "Barclays misled shareholders and the public about one of the biggest investments in the bank's history, a BBC Panorama investigation has found.The bank announced in 2008 that Manchester City owner Sheikh Mansour had agreed to invest more than £3bn."
   var i;
   for (i = 0; i < keyword1.length; i++) {
@@ -116,15 +103,16 @@ keywordReplace();
   return (
     <Container> 
         <div className="edit-form">
-          <h4>Output</h4>
+          <h2>Output</h2>
           <Form>
+          <h3>Original Document</h3>
             <Card htmlFor="text">
-               Original Document
               <Card.Body> {toothless} </Card.Body>
             </Card>
           </Form>
           <br/>
           <Form>
+          <h3>Redacted Document</h3>
             <Card htmlFor="text">
                Redacted Document
               <Card.Body> {myNewStr} </Card.Body>
