@@ -3,7 +3,10 @@ import ToothlessDataService from "../services/ToothlessService";
 import { Link } from "react-router-dom";
 import { Button, Container, Form } from 'react-bootstrap';
 
-const ToothlessList = () => {
+const ToothlessList = (props) => {
+
+  console.log(props);
+
   const [toothless, setToothless] = useState([]);
   const [keywords, setKeywords] = useState([]);
   const [currentToothless, setCurrentToothless] = useState(null);
@@ -13,36 +16,59 @@ const ToothlessList = () => {
   const [searchTitle, setSearchTitle] = useState("");
 
   useEffect(() => {
-    retrieveToothless();
-    retrieveKeywords();
-  }, []);
+    retrieveToothless(props.match.params.id);
+    retrieveKeywords(props.match.params.id);
+  }, [props.match.params.id]);
 
   const onChangeSearchTitle = e => {
     const searchTitle = e.target.value;
     setSearchTitle(searchTitle);
   };
 
-  const retrieveToothless = () => {
-    ToothlessDataService.getAll()
+  const retrieveToothless = id => {
+    ToothlessDataService.get(id)
       .then(response => {
-        setToothless(response.data);
+        setToothless(response.data.text);
         console.log(response.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+  // const retrieveToothless = () => {
+  //   ToothlessDataService.getAll()
+  //     .then(response => {
+  //       setToothless(response.data);
+  //       console.log(response.data);
+  //     })
+  //     .catch(e => {
+  //       console.log(e);
+  //     });
+  // };
+
+  const retrieveKeywords = id => {
+    ToothlessDataService.getKeyword(id)
+      .then(response => {
+        setKeywords(response.data.keywords);
+        console.log(response.data.keywords);
       })
       .catch(e => {
         console.log(e);
       });
   };
 
-  const retrieveKeywords = () => {
-    ToothlessDataService.getAllKeywords()
-      .then(response => {
-        setKeywords(response.data);
-        console.log(response.data);
-      })
-      .catch(e => {
-        console.log(e);
-      });
-  };
+  // const retrieveKeywords = () => {
+  //   ToothlessDataService.getAllKeywords()
+  //     .then(response => {
+  //       setKeywords(response.data);
+  //       console.log(response.data);
+  //     })
+  //     .catch(e => {
+  //       console.log(e);
+  //     });
+  // };
+
+  console.log(keywords)
 
   const refreshList = () => {
     retrieveToothless();
@@ -83,23 +109,17 @@ const ToothlessList = () => {
       <div>
       <Container>
       <h4 className="text-center py-2" >Submitted Text</h4>
-      {toothless &&
-            toothless.map((tooth, index) => (
-             <article key={index}>
-               {tooth.text}
-             </article>
-            ))}
+      <article>{toothless}</article>
 
       </Container> 
-    <Form>
+      <Form>
       <h4 className="text-center py-2" >Redacted Terms</h4>
     {keywords &&
         keywords.map((keyword, index) => (
-            <Form.Check className="my-2 ml-3" custom key={index} label={keyword.keywords_name} />
+            <Form.Check className="my-2 ml-3" custom key={index} label={keyword.word} />
         ))}
 
-    </Form>
-     
+    </Form>   
      
       <div className="col-md-6">
         {currentToothless ? (

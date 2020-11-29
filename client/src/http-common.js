@@ -1,8 +1,9 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "https://chakradb.herokuapp.com/",
+  baseURL: "https://team-chakra-thlta.herokuapp.com/",
   headers: {
     "Content-type": "application/json"
+    
   }
 });
