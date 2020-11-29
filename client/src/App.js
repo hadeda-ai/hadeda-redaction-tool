@@ -1,8 +1,50 @@
 import React from "react";
-import PortfolioContainer from "./components/PortfolioContainer";
-// stylesheets
-import './App.scss';
+import { Switch, Route, Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.scss";
 
-const App = () => <PortfolioContainer />;
+import Home from "./components/Home";
+import Submit from "./components/Submit";
+import Review from "./components/Review";
+import Output from "./components/Output";
+
+
+function App() {
+  return (
+    <div>
+      <nav className="navbar navbar-expand navbar-dark bg-dark">
+        <a href="/home" className="navbar-brand">
+         TEAM CHAKRA
+        </a>
+        <div className="navbar-nav mr-auto">
+          <li className="nav-item">
+            <Link to={"/submit"} className="nav-link">
+              Submit
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to={"/review"} className="nav-link">
+              Review
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to={"/output"} className="nav-link">
+              Output
+            </Link>
+          </li>
+        </div>
+      </nav>
+
+      <div className="container mt-3">
+        <Switch>
+          <Route exact path="/home" component={Home} />
+          <Route exact path="/submit" component={Submit} />
+          <Route exact path="/review" component={Review} />
+          <Route exact path="/output" component={Output} />
+        </Switch>
+      </div>
+    </div>
+  );
+}
 
 export default App;

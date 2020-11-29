@@ -1,5 +1,6 @@
 $color-primary : #26282b;
 $color-lighter-grey-background: #353941;
+$color-pop: #663399;
 $color-light-text: rgb(207, 207, 207);
 $color-medium-text: #9C9EA1;
 $color-dark-text: rgb(63, 63, 63);
@@ -26,10 +27,15 @@ body {
   height: 100vh;
   width: 100%;
   display: flex;
-  background-image: url('./assets/images/movies.jpg');
   background-size: cover;
   background-position: center;
   justify-content: center;
+}
+
+.lander {
+  color: $color-pop;
+  font-weight: 600;
+  font-size: xx-large;
 }
 
 .home-text {
@@ -90,3 +96,4 @@ body {
     column-count: 3;
   }
 }
+
