@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ToothlessDataService from "../services/ToothlessService";
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
@@ -36,11 +36,38 @@ const Submit = () => {
       });
   };
 
+  function simulateNetworkRequest() {
+    return new Promise((resolve) => setTimeout(resolve, 20000));
+  }
+  
+  function LoadingButton() {
+  
+    useEffect(() => {
+      if (submitted) {
+        simulateNetworkRequest().then(() => {
+          setSubmitted(false);
+        });
+      }
+    }, [submitted]);
+  
+    const handleClick = () => setSubmitted(true);
+  
+    return (
+      <Button
+        variant="success"
+        disabled={submitted}
+        onClick={!submitted ? handleClick : null}
+      >
+        {submitted ? 'Loading…' : 'Click to Submit'}
+      </Button>
+    );
+  }
+
   const newToothless = () => {
     setToothless(initialToothlessState);
     setSubmitted(false);
   };
-
+  
   return (
     <div className="submit-form">
       {submitted ? (
@@ -80,6 +107,7 @@ const Submit = () => {
              <button onClick={saveToothless} className="my-3 btn btn-success">
             Submit
           </button>
+          <LoadingButton  />
           </div>
          
         </div>
