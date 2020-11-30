@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ToothlessDataService from "../services/ToothlessService";
 import { Link } from "react-router-dom";
-import { Button, Container, Form } from 'react-bootstrap';
+import { Button, Container, Form, InputGroup, FormControl, ToggleButton, ButtonGroup } from 'react-bootstrap';
 
 const ToothlessList = (props) => {
 
@@ -10,20 +10,13 @@ const ToothlessList = (props) => {
   const [toothless, setToothless] = useState([]);
   const [keywords, setKeywords] = useState([]);
   const [currentToothless, setCurrentToothless] = useState(null);
-  const [currentKeywords, setCurrentKeywords] = useState(null);
-  
+  const [checked, setChecked] = useState(false);  
   const [currentIndex, setCurrentIndex] = useState(-1);
-  const [searchTitle, setSearchTitle] = useState("");
 
   useEffect(() => {
     retrieveToothless(props.match.params.id);
     retrieveKeywords(props.match.params.id);
   }, [props.match.params.id]);
-
-  const onChangeSearchTitle = e => {
-    const searchTitle = e.target.value;
-    setSearchTitle(searchTitle);
-  };
 
   const retrieveToothless = id => {
     ToothlessDataService.get(id)
@@ -35,16 +28,6 @@ const ToothlessList = (props) => {
         console.log(e);
       });
   };
-  // const retrieveToothless = () => {
-  //   ToothlessDataService.getAll()
-  //     .then(response => {
-  //       setToothless(response.data);
-  //       console.log(response.data);
-  //     })
-  //     .catch(e => {
-  //       console.log(e);
-  //     });
-  // };
 
   const retrieveKeywords = id => {
     ToothlessDataService.getKeyword(id)
@@ -57,17 +40,6 @@ const ToothlessList = (props) => {
       });
   };
 
-  // const retrieveKeywords = () => {
-  //   ToothlessDataService.getAllKeywords()
-  //     .then(response => {
-  //       setKeywords(response.data);
-  //       console.log(response.data);
-  //     })
-  //     .catch(e => {
-  //       console.log(e);
-  //     });
-  // };
-
   console.log(keywords)
 
   const refreshList = () => {
@@ -77,32 +49,7 @@ const ToothlessList = (props) => {
     setCurrentIndex(-1);
   };
 
-  const setActiveKeyword = (keyword, index) => {
-    setCurrentKeywords(keyword);
-    setCurrentIndex(index);
-  };
-
-  const removeAllToothless = () => {
-    ToothlessDataService.removeAll()
-      .then(response => {
-        console.log(response.data);
-        refreshList();
-      })
-      .catch(e => {
-        console.log(e);
-      });
-  };
-
-  const findByTitle = () => {
-    ToothlessDataService.findByTitle(searchTitle)
-      .then(response => {
-        setToothless(response.data);
-        console.log(response.data);
-      })
-      .catch(e => {
-        console.log(e);
-      });
-  };
+  const handleCheck = () => setChecked(!checked)
 
   return (
     <div>
@@ -110,60 +57,42 @@ const ToothlessList = (props) => {
       <Container>
       <h4 className="text-center py-2" >Submitted Text</h4>
       <article>{toothless}</article>
-
       </Container> 
-      <Form>
-      <h4 className="text-center py-2" >Redacted Terms</h4>
-    {keywords &&
+      <Form className="my-4">
+        <Form.Group controlId="keywordCheckBox">
+        <Form.Label as="h3">Interesting Terms for redaction</Form.Label>
+        {keywords &&
         keywords.map((keyword, index) => (
-            <Form.Check className="my-2 ml-3" type="checkbox" key={index} label={keyword.word} />
-        ))}
-
-    </Form>   
-     
-      <div className="col-md-6">
-        {currentToothless ? (
-          <div>
-            <h4>Keyword options</h4>
-            <div>
-              <label>
-                <strong>Text:</strong>
-              </label>{" "}
-              {currentToothless.text}
-            </div>
-            <div>
-              <label>
-                <strong>Description:</strong>
-              </label>{" "}
-              {currentToothless.description}
-            </div>
-            <div>
-              <label>
-                <strong>Status:</strong>
-              </label>{" "}
-              {currentToothless.published ? "Published" : "Pending"}
-            </div>
-
-            <Link
-              to={"/api/toothless/" + currentToothless.id}
-              className="badge badge-warning"
-            >
-              Edit
-            </Link>
+          <div  key={index} clasName="my-2 mx-5">
+            <Form.Check 
+            type="checkbox"
+            name="checkbox"
+            onChange={handleCheck}>
+              <Form.Check.Input type="checkbox" isValid={checked}/>
+              <Form.Check.Label>{keyword.word}</Form.Check.Label>
+            </Form.Check>
           </div>
-        ) : (
+        ))}
+        </Form.Group>      
+       
+      <InputGroup className="mb-3">
+        <InputGroup.Prepend>
+        <InputGroup.Checkbox aria-label="Checkbox for following text input" />
+        </InputGroup.Prepend>
+        <FormControl aria-label="Text input with checkbox" />
+      </InputGroup>
+    </Form>   
+
           <div>
             <br />
             <p>Please select your redacted words.</p>
             <Link to={`/output/${props.match.params.id}`} className="nav-link">
-           <Button className="my-2 float-lg-right float-md-right float-sm-right btn-success">
+           <Button type="submit" className="my-2 float-lg-right float-md-right float-sm-right btn-success">
                To Output Page
                  </Button>
                  </Link>
           </div> 
-        )}
       </div>
-    </div>
     </div>
   );
 };

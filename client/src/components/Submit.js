@@ -104,7 +104,7 @@ const Submit = () => {
               onChange={handleInputChange}
               name="text"
             />
-             <button onClick={saveToothless} className="my-3 btn btn-success">
+             <button type="submit" onClick={saveToothless} className="my-3 btn btn-success">
             Submit
           </button>
           <LoadingButton  />

@@ -62,35 +62,13 @@ const Output = props => {
         console.log(e);
       });
   };
-  
-var renderValue;
-const renderInputText = () => {
-    var i;
-  for (i = 0; i < toothless.length; i++) { 
-    var obj = toothless[i];
-    for (var key in obj) { 
-      console.log("text", key, obj[key])
-      renderValue = obj.text
-    }
-  }
-   return renderValue;
-}
-
-renderInputText();
-const keywordValues = Object.values(keywords)
-let keys =[ ...keywordValues.keys() ];
-console.log([keywords[1]]);
-
 
 var myNewStr;
 const keywordReplace = () => {
- // var keyword1 = obsKeysToString(word, keywords, ',');
+  var keywordArray = keywords.map((word) => { return word["word"]})
   var myStr = toothless.toString(); 
-  var keyword1 = [ 'Georgina Spooren', 'Eylem Middelkamp', 'J.A.W. Scholten-Hinloopen', 'D.A. Verburg', 'C.C.W. Lange'];
-  // var myStr = "Barclays misled shareholders and the public about one of the biggest investments in the bank's history, a BBC Panorama investigation has found.The bank announced in 2008 that Manchester City owner Sheikh Mansour had agreed to invest more than £3bn."
-  var i;
-  for (i = 0; i < keyword1.length; i++) {
-    var replaceWord = `${keyword1[i]}`;
+  for (let i = 0; i < keywordArray.length; i++) {
+    var replaceWord = `${keywordArray[i]}`;
     var sRegExInput = new RegExp(replaceWord, 'g');    
     myStr = myStr.replace(sRegExInput , "******"); 
   }
