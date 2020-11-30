@@ -12,6 +12,13 @@ const Submit = () => {
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setLoading] = useState(false);
 
+  useEffect(() => {
+    if (isLoading) {
+      saveToothless()
+      };
+  
+  }, [isLoading]);
+
   const handleInputChange = event => {
     const { name, value } = event.target;
     setToothless({ ...toothless, [name]: value });
@@ -37,17 +44,7 @@ const Submit = () => {
       });
   };
   
-  
-    useEffect(() => {
-      if (isLoading) {
-        saveToothless()
-        };
-    
-    }, [isLoading]);
-  
-    const handleClick = () => setLoading(true);
-  
-
+  const handleClick = () => setLoading(true);
 
   const newToothless = () => {
     setToothless(initialToothlessState);

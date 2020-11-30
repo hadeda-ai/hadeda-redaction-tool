@@ -10,14 +10,19 @@ const Output = props => {
   };
   const [toothless, setToothless] = useState([]);
   const [keywords, setKeywords] = useState([]);
-  const [currentToothless, setCurrentToothless] = useState(initialToothlessState);
+  const [deleted, setDeleted] = useState(false);
+  const [currentToothless, setCurrentToothless] = useState(null);
   const [message, setMessage] = useState("");
   const [currentIndex, setCurrentIndex] = useState(-1);
 
   useEffect(() => {
     retrieveToothless(props.match.params.id);
     retrieveKeywords(props.match.params.id);
-  }, [props.match.params.id]);
+    if(deleted) {
+      removeAllToothless(props.match.params.id);
+      refreshList(props.match.params.id);
+    }
+  }, [props.match.params.id, deleted]);
 
   const handleInputChange = event => {
     const { name, value } = event.target;
@@ -46,17 +51,17 @@ const Output = props => {
       });
   };
 
-  const refreshList = () => {
-    retrieveToothless();
+  const refreshList = id => {
+    retrieveToothless(id);
     setCurrentToothless(null);
-    setCurrentIndex(-1);
+    setCurrentIndex(-1)
   };
 
-  const removeAllToothless = () => {
-    ToothlessDataService.removeAll()
+  const removeAllToothless = id => {
+    ToothlessDataService.remove(id)
       .then(response => {
-        console.log(response.data);
-        refreshList();
+        setDeleted(false)
+        console.log(response.data.id);
       })
       .catch(e => {
         console.log(e);
@@ -70,7 +75,7 @@ const keywordReplace = () => {
   for (let i = 0; i < keywordArray.length; i++) {
     var replaceWord = `${keywordArray[i]}`;
     var sRegExInput = new RegExp(replaceWord, 'g');    
-    myStr = myStr.replace(sRegExInput , "******"); 
+    myStr = myStr.replace(sRegExInput , "  ******  "); 
   }
   myNewStr = myStr
   return myNewStr;
@@ -78,6 +83,11 @@ const keywordReplace = () => {
 keywordReplace();
 // console.log("output", myNewStr);
 
+const handleDelete = () => {
+  setDeleted(state => true)
+  console.log(deleted)
+};
+console.log(deleted)
   return (
     <Container> 
         <div className="edit-form">
@@ -99,9 +109,9 @@ keywordReplace();
           
         <Button
           className="m-3 btn btn-sm btn-danger"
-          onClick={removeAllToothless}
+          onClick={handleDelete}
         >
-          Remove All
+          Remove Redaction
         </Button>
         
         </div>

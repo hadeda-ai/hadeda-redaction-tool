@@ -18,7 +18,7 @@ const update = (id, data) => {
 };
 
 const remove = id => {
-  return http.delete(`/text/${id}`);
+  return http.delete(`/text/${id}/`);
 };
 
 const removeAll = () => {
