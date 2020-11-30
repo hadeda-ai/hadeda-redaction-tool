@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ToothlessDataService from "../services/ToothlessService";
 import { Link } from "react-router-dom";
 import { Button, Container, Form, InputGroup, FormControl, ToggleButton, ButtonGroup } from 'react-bootstrap';
 
 const ToothlessList = (props) => {
 
-  console.log(props);
-
   const [toothless, setToothless] = useState([]);
   const [keywords, setKeywords] = useState([]);
+  const [redactedWords, setRedactedWords] = useState([]);
   const [currentToothless, setCurrentToothless] = useState(null);
   const [checked, setChecked] = useState(false);  
   const [currentIndex, setCurrentIndex] = useState(-1);
@@ -42,14 +41,18 @@ const ToothlessList = (props) => {
 
   console.log(keywords)
 
-  const refreshList = () => {
-    retrieveToothless();
-    retrieveKeywords();
-    setCurrentToothless(null);
-    setCurrentIndex(-1);
-  };
+  const handleCheck = keyword => {
+    setChecked(!checked)
+    console.log(setChecked)
+    setRedactedWords(...redactedWords, keyword);
+    // const { name, value } = keyword.target;
+    // setRedactedWords({ ...redactedWords, [name]: value });
+    };
 
-  const handleCheck = () => setChecked(!checked)
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(redactedWords);
+  }
 
   return (
     <div>
@@ -58,17 +61,18 @@ const ToothlessList = (props) => {
       <h4 className="text-center py-2" >Submitted Text</h4>
       <article>{toothless}</article>
       </Container> 
-      <Form className="my-4">
+      <Form onSubmit={handleSubmit} className="my-4">
         <Form.Group controlId="keywordCheckBox">
-        <Form.Label as="h3">Interesting Terms for redaction</Form.Label>
+        <Form.Label as="h3">Terms for redaction</Form.Label>
         {keywords &&
         keywords.map((keyword, index) => (
-          <div  key={index} clasName="my-2 mx-5">
+          <div key={index} className="my-2 mx-2">
             <Form.Check 
             type="checkbox"
-            name="checkbox"
-            onChange={handleCheck}>
-              <Form.Check.Input type="checkbox" isValid={checked}/>
+            name="id[word]"
+            value={keyword}
+           >
+              <Form.Check.Input type="checkbox" onChange = {() => handleCheck(keyword)} isValid={checked} />
               <Form.Check.Label>{keyword.word}</Form.Check.Label>
             </Form.Check>
           </div>

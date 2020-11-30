@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ToothlessDataService from "../services/ToothlessService";
 import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 
 const Submit = () => {
   const initialToothlessState = {
@@ -10,6 +10,7 @@ const Submit = () => {
   };
   const [toothless, setToothless] = useState(initialToothlessState);
   const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
   const handleInputChange = event => {
     const { name, value } = event.target;
@@ -35,33 +36,18 @@ const Submit = () => {
         console.log(e);
       });
   };
-
-  function simulateNetworkRequest() {
-    return new Promise((resolve) => setTimeout(resolve, 20000));
-  }
   
-  function LoadingButton() {
   
     useEffect(() => {
-      if (submitted) {
-        simulateNetworkRequest().then(() => {
-          setSubmitted(false);
-        });
-      }
-    }, [submitted]);
+      if (isLoading) {
+        saveToothless()
+        };
+    
+    }, [isLoading]);
   
-    const handleClick = () => setSubmitted(true);
+    const handleClick = () => setLoading(true);
   
-    return (
-      <Button
-        variant="success"
-        disabled={submitted}
-        onClick={!submitted ? handleClick : null}
-      >
-        {submitted ? 'Loading…' : 'Click to Submit'}
-      </Button>
-    );
-  }
+
 
   const newToothless = () => {
     setToothless(initialToothlessState);
@@ -95,21 +81,25 @@ const Submit = () => {
           
           <div className="form-group">
             <label htmlFor="text">Paste Text Here:</label>
-            <input
-              type="textarea"  
-              className="form-control"          
-              id="text"
-              required
-              value={toothless.text}
-              onChange={handleInputChange}
-              name="text"
-            />
-             <button type="submit" onClick={saveToothless} className="my-3 btn btn-success">
-            Submit
-          </button>
-          <LoadingButton  />
+                  <textarea
+                  type="textarea"
+                  rows={10}
+                  className="form-control"          
+                  id="text"
+                  required
+                  value={toothless.text}
+                  onChange={handleInputChange}
+                  name="text" 
+                />
+          <Button
+          className="my-3"
+          variant="success"
+          disabled={isLoading}
+          onClick={!isLoading ? handleClick : null}
+            >
+            {isLoading ? 'Loading…' : 'Click to load'}
+            </Button>
           </div>
-         
         </div>
       )}
     </div>
