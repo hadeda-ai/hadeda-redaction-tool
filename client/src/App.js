@@ -13,9 +13,9 @@ function App() {
   return (
     <div>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
-        <a href="/home" className="navbar-brand">
+        <Link to="/home" className="navbar-brand">
          HADEDA
-        </a>
+        </Link>
         <div className="navbar-nav mr-auto">
           <li className="nav-item">
             <Link to={"/submit"} className="nav-link">
