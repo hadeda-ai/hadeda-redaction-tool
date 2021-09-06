@@ -1,0 +1,26 @@
+version: "3.9"
+   
+services:
+  mysql:
+    image: mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: Chakra!!
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: Chakra!
+      MYSQL_DATABASE: myapi_clienttext
+    volumes:
+      - .docker/setup.sql:/docker-entrypoint-initdb.d/setup.sql
+      - db_data:/var/lib/mysql
+
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+
+volumes:
+    db_data:
